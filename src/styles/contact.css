@@ -1,0 +1,166 @@
+/* ============================================================
+   Contact section + footer
+   ============================================================ */
+
+.ct-stars,
+.ct-particles {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  z-index: 0;
+}
+
+.ct-bg-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(50% 50% at 80% 30%, rgba(43, 158, 255, 0.18), transparent 60%);
+  z-index: 0;
+}
+
+.ct-planet {
+  width: clamp(160px, 18vw, 280px);
+  top: 16%;
+  right: 4%;
+  z-index: 0;
+  animation: floatY 10s ease-in-out infinite;
+}
+
+.ct-layout {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
+
+.ct-intro { padding-top: 8px; }
+
+.ct-details {
+  list-style: none;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+.ct-details li {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.ct-details__l {
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+}
+.ct-details__v {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.ct-form {
+  padding: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.ct-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.ct-field label {
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+.ct-field input,
+.ct-field textarea {
+  width: 100%;
+  padding: 14px 16px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  color: var(--text);
+  font-family: "Inter", sans-serif;
+  font-size: 0.96rem;
+  transition: border-color 0.35s, background 0.35s, box-shadow 0.35s;
+  resize: vertical;
+}
+.ct-field input::placeholder,
+.ct-field textarea::placeholder { color: var(--text-muted); }
+.ct-field input:focus,
+.ct-field textarea:focus {
+  outline: none;
+  border-color: var(--cyan-500);
+  background: rgba(43, 212, 255, 0.05);
+  box-shadow: 0 0 0 3px rgba(43, 212, 255, 0.15);
+}
+
+.ct-submit {
+  margin-top: 8px;
+  align-self: flex-start;
+}
+.ct-submit:disabled { opacity: 0.7; }
+
+.ct-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 14px;
+  padding: 30px 10px;
+}
+.ct-success__icon {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  color: var(--bg-deep);
+  background: linear-gradient(135deg, var(--cyan-500), var(--teal-400));
+  box-shadow: 0 0 30px rgba(43, 212, 255, 0.5);
+  animation: pulseGlow 2.4s ease-in-out infinite;
+}
+.ct-success h3 { font-size: 1.5rem; }
+.ct-success p { color: var(--text-soft); }
+
+/* Footer */
+.ct-footer {
+  position: relative;
+  z-index: 2;
+  margin-top: 100px;
+  border-top: 1px solid var(--glass-border);
+  padding-block: 28px;
+}
+.ct-footer__inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+.ct-footer__brand {
+  font-family: "Space Grotesk", sans-serif;
+  font-weight: 600;
+  color: var(--text);
+}
+
+@media (max-width: 880px) {
+  .ct-layout { grid-template-columns: 1fr; gap: 40px; }
+  .ct-planet { opacity: 0.4; }
+}
+@media (max-width: 520px) {
+  .ct-form { padding: 24px; }
+  .ct-footer__inner { flex-direction: column; align-items: flex-start; }
+}

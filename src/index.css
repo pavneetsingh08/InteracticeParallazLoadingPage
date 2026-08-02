@@ -1,0 +1,281 @@
+/* ============================================================
+   Journey Through Space — Global styles
+   ============================================================ */
+
+:root {
+  /* Surfaces */
+  --bg-deep: #03040a;
+  --bg-space: #060814;
+  --bg-surface: #0a0e1f;
+  --bg-elevated: #111634;
+
+  /* Brand / accent ramps */
+  --cyan-100: #c7faff;
+  --cyan-300: #6ee9ff;
+  --cyan-500: #2bd4ff;
+  --cyan-700: #0a8fb8;
+
+  --teal-400: #2fffd0;
+  --teal-600: #14b89a;
+
+  --blue-300: #7fb3ff;
+  --blue-500: #4a9eff;
+  --blue-700: #1f5fcf;
+
+  --gold-300: #ffd98a;
+  --gold-500: #ffc457;
+  --amber-500: #ff9d4d;
+  --rose-400: #ff7a8a;
+
+  /* Text */
+  --text: #eef3ff;
+  --text-soft: #b9c2dc;
+  --text-muted: #7c87a8;
+
+  /* Glass */
+  --glass-bg: rgba(255, 255, 255, 0.045);
+  --glass-bg-strong: rgba(255, 255, 255, 0.07);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --glass-hi: rgba(255, 255, 255, 0.22);
+
+  /* Misc */
+  --ring: rgba(43, 212, 255, 0.5);
+  --shadow-soft: 0 24px 60px -24px rgba(0, 0, 0, 0.7);
+  --shadow-glow: 0 0 60px -12px rgba(43, 212, 255, 0.45);
+  --radius: 22px;
+  --radius-lg: 32px;
+  --maxw: 1240px;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background-color: var(--bg-deep);
+  color: var(--text);
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  overflow-x: hidden;
+  cursor: auto;
+}
+
+/* When the custom cursor is active, hide the native one on capable pointers */
+@media (hover: hover) and (pointer: fine) {
+  body.has-custom-cursor,
+  body.has-custom-cursor a,
+  body.has-custom-cursor button,
+  body.has-custom-cursor input,
+  body.has-custom-cursor textarea {
+    cursor: none;
+  }
+}
+
+h1, h2, h3, h4, h5 {
+  font-family: "Space Grotesk", "Inter", sans-serif;
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+
+p { color: var(--text-soft); }
+
+a { color: inherit; text-decoration: none; }
+
+img { display: block; max-width: 100%; }
+
+button { font-family: inherit; border: none; background: none; color: inherit; }
+
+::selection {
+  background: var(--cyan-500);
+  color: var(--bg-deep);
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg-deep); }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(var(--cyan-700), var(--blue-700));
+  border-radius: 99px;
+  border: 2px solid var(--bg-deep);
+}
+
+/* ---------- Layout helpers ---------- */
+.container {
+  width: 100%;
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: 28px;
+}
+
+.section {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.section-pad {
+  padding-block: clamp(96px, 14vh, 200px);
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--cyan-300);
+}
+
+.eyebrow::before {
+  content: "";
+  width: 26px;
+  height: 1px;
+  background: var(--cyan-500);
+}
+
+.section-title {
+  font-size: clamp(2.4rem, 6vw, 4.6rem);
+  font-weight: 600;
+  margin-block: 18px 22px;
+}
+
+.section-title .grad {
+  background: linear-gradient(120deg, var(--cyan-300), var(--blue-300) 60%, var(--teal-400));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.section-lead {
+  max-width: 620px;
+  font-size: clamp(1rem, 1.6vw, 1.18rem);
+  color: var(--text-soft);
+}
+
+/* ---------- Glass card ---------- */
+.glass {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  box-shadow: var(--shadow-soft);
+  position: relative;
+}
+
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(140deg, var(--glass-hi), transparent 40%, transparent 60%, rgba(43, 212, 255, 0.18));
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  --btn-bg: var(--glass-bg-strong);
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 30px;
+  border-radius: 99px;
+  font-family: "Space Grotesk", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--text);
+  background: var(--btn-bg);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  overflow: hidden;
+  transition: transform 0.5s var(--ease-out), border-color 0.4s, color 0.4s, box-shadow 0.5s;
+  will-change: transform;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 120% at 50% 120%, rgba(43, 212, 255, 0.5), transparent 60%);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-out);
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  border-color: var(--cyan-500);
+  box-shadow: 0 18px 40px -16px rgba(43, 212, 255, 0.55);
+}
+.btn:hover::after { opacity: 1; }
+
+.btn--primary {
+  background: linear-gradient(120deg, var(--cyan-500), var(--blue-500));
+  border-color: transparent;
+  color: var(--bg-deep);
+  font-weight: 600;
+}
+.btn--primary::after {
+  background: radial-gradient(120% 120% at 50% 120%, rgba(255, 255, 255, 0.4), transparent 60%);
+}
+.btn--primary:hover { box-shadow: 0 22px 50px -16px rgba(74, 158, 255, 0.7); }
+
+.btn .arrow {
+  transition: transform 0.5s var(--ease-out);
+}
+.btn:hover .arrow { transform: translateX(5px); }
+
+/* ---------- Reveal animation base (GSAP toggles visible) ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(38px);
+}
+
+/* utility */
+.grad-text {
+  background: linear-gradient(120deg, var(--cyan-300), var(--blue-300));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; }
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; }
+}
